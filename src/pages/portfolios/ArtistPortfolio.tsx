@@ -147,7 +147,7 @@ const artworks = [
   }
 ];
 
-const ArtistPortfolio = () => {
+const ArtistPortfolio: React.FC = () => {
   const [selectedArtwork, setSelectedArtwork] = useState<null | typeof artworks[0]>(null);
 
   return (
@@ -188,9 +188,10 @@ const ArtistPortfolio = () => {
         ))}
       </Gallery>
 
-      <AnimatePresence mode="wait">
-        {selectedArtwork && (
+      {selectedArtwork && (
+        <AnimatePresence>
           <Modal
+            key="modal"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -206,8 +207,8 @@ const ArtistPortfolio = () => {
               <ModalImage src={selectedArtwork.image} alt={selectedArtwork.title} />
             </ModalContent>
           </Modal>
-        )}
-      </AnimatePresence>
+        </AnimatePresence>
+      )}
     </Container>
   );
 };
