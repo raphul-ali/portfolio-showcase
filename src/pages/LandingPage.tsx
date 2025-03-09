@@ -5,49 +5,144 @@ import { motion } from 'framer-motion';
 
 const Container = styled.div`
   min-height: 100vh;
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  background: #0f172a;
   color: white;
   padding: 2rem;
+  position: relative;
+  overflow: hidden;
+`;
+
+const BackgroundGradient = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 50%);
+  z-index: 0;
+`;
+
+const Content = styled.div`
+  position: relative;
+  z-index: 1;
 `;
 
 const Header = styled.header`
-  text-align: center;
-  margin-bottom: 4rem;
+  text-align: left;
+  margin-bottom: 6rem;
+  padding-top: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
 `;
 
-const Title = styled.h1`
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-  background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+const Title = styled(motion.h1)`
+  font-size: 4.5rem;
+  margin-bottom: 2rem;
+  color: #fff;
+  font-weight: 700;
+  background: linear-gradient(45deg, #7c3aed, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  position: relative;
 `;
 
-const Subtitle = styled.p`
-  font-size: 1.5rem;
-  color: #ccc;
-  max-width: 800px;
-  margin: 0 auto;
+const Subtitle = styled(motion.div)`
+  font-size: 2rem;
+  color: #94a3b8;
+  max-width: 600px;
   line-height: 1.6;
+  margin-bottom: 3rem;
+
+  span {
+    color: #7c3aed;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(45deg, #7c3aed, #ec4899);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  }
 `;
 
-const ProfessionSection = styled.section`
-  margin-bottom: 4rem;
+const SectionTitle = styled.h2`
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  text-align: left;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+`;
+
+const SectionNumber = styled.span`
+  font-size: 1.5rem;
+  color: #4ECDC4;
+  margin-right: 1rem;
+  font-family: monospace;
+`;
+
+const ProfessionSection = styled(motion.section)`
+  margin-bottom: 8rem;
+`;
+
+const ProfessionHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+`;
+
+const ProfessionIcon = styled(motion.div)`
+  font-size: 2.5rem;
+  background: linear-gradient(45deg, #7c3aed, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const ProfessionTitle = styled.h2`
-  font-size: 2rem;
-  color: #4ECDC4;
-  margin-bottom: 2rem;
-  text-align: center;
+  font-size: 2.5rem;
+  color: #fff;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(45deg, #7c3aed, #ec4899);
+  }
 `;
 
 const VariantsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  gap: 3rem;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 3rem auto 0;
+  padding: 0 2rem;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -55,17 +150,17 @@ const VariantsGrid = styled.div`
 `;
 
 const Card = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 15px;
-  padding: 2rem;
-  text-align: center;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(124, 58, 237, 0.1);
   transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 
   &:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-10px);
+    border-color: #7c3aed;
+    box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.3);
   }
 `;
 
@@ -74,116 +169,180 @@ const StyledLink = styled(Link)`
   color: white;
 `;
 
+const CardContent = styled.div`
+  padding: 2rem;
+`;
+
 const CardTitle = styled.h3`
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: linear-gradient(45deg, #7c3aed, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`;
+
+const CardNumber = styled.span`
+  font-size: 1.2rem;
+  color: #7c3aed;
+  font-family: monospace;
 `;
 
 const CardDescription = styled.p`
-  color: #ccc;
-  margin-bottom: 1rem;
+  color: #94a3b8;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
 `;
 
-const CardImage = styled.img`
+const CardImage = styled(motion.img)`
   width: 100%;
-  height: 200px;
+  height: 250px;
   object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+  filter: grayscale(30%);
+
+  &:hover {
+    transform: scale(1.05);
+    filter: grayscale(0%);
+  }
+`;
+
+const ReadMore = styled(motion.span)`
+  color: #7c3aed;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  position: relative;
+  
+  &::after {
+    content: '→';
+    transition: transform 0.3s ease;
+  }
+
+  &:hover::after {
+    transform: translateX(5px);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(45deg, #7c3aed, #ec4899);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover::before {
+    transform: scaleX(1);
+  }
 `;
 
 const portfolios = [
   {
     profession: "Web Developer",
+    icon: "💻",
     variants: [
       {
         title: "Modern Minimalist",
-        description: "Clean and minimal design focusing on code and projects",
+        description: "Clean and minimal design focusing on code and projects. Perfect for showcasing your development skills and project portfolio.",
         path: "/web-dev-1",
-        image: "https://source.unsplash.com/random/800x600?webdevelopment,code",
+        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format&fit=crop",
         color: "#61DAFB"
       },
       {
         title: "Creative Developer",
-        description: "Bold and interactive design showcasing web innovations",
+        description: "Bold and interactive design showcasing web innovations. Ideal for creative developers who push the boundaries of web technology.",
         path: "/web-dev-2",
-        image: "https://source.unsplash.com/random/800x600?programming,laptop",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&auto=format&fit=crop",
         color: "#FF6B6B"
       }
     ]
   },
   {
     profession: "Software Developer",
+    icon: "⚡",
     variants: [
       {
         title: "Tech Professional",
-        description: "Enterprise-focused design highlighting software architecture",
+        description: "Enterprise-focused design highlighting software architecture and complex system designs. Perfect for senior developers.",
         path: "/software-dev-1",
-        image: "https://source.unsplash.com/random/800x600?software,technology",
+        image: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=800&auto=format&fit=crop",
         color: "#4ECDC4"
       },
       {
         title: "Innovation Leader",
-        description: "Dynamic portfolio showcasing cutting-edge projects",
+        description: "Dynamic portfolio showcasing cutting-edge projects and technological innovation. Ideal for tech leads and architects.",
         path: "/software-dev-2",
-        image: "https://source.unsplash.com/random/800x600?coding,computer",
+        image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop",
         color: "#A8E6CF"
       }
     ]
   },
   {
     profession: "Digital Marketer",
+    icon: "📊",
     variants: [
       {
         title: "Data-Driven Marketer",
-        description: "Analytics-focused design with campaign showcases",
+        description: "Analytics-focused design with campaign showcases and performance metrics. Perfect for performance marketers.",
         path: "/digital-marketing-1",
-        image: "https://source.unsplash.com/random/800x600?marketing,analytics",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop",
         color: "#FFD93D"
       },
       {
         title: "Creative Strategist",
-        description: "Visual-centric portfolio highlighting brand stories",
+        description: "Visual-centric portfolio highlighting brand stories and creative campaigns. Ideal for creative directors and strategists.",
         path: "/digital-marketing-2",
-        image: "https://source.unsplash.com/random/800x600?socialmedia,marketing",
+        image: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=800&auto=format&fit=crop",
         color: "#FF8B94"
       }
     ]
   },
   {
     profession: "Banker",
+    icon: "💰",
     variants: [
       {
         title: "Professional Finance",
-        description: "Corporate and trustworthy design for financial expertise",
+        description: "Corporate and trustworthy design showcasing financial expertise and portfolio management skills. Perfect for investment bankers.",
         path: "/banker-1",
-        image: "https://source.unsplash.com/random/800x600?finance,banking",
+        image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&auto=format&fit=crop",
         color: "#2C3E50"
       },
       {
         title: "Modern Banker",
-        description: "Contemporary design focusing on fintech and innovation",
+        description: "Contemporary design focusing on fintech innovation and modern banking solutions. Ideal for fintech professionals.",
         path: "/banker-2",
-        image: "https://source.unsplash.com/random/800x600?business,finance",
+        image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&auto=format&fit=crop",
         color: "#3498DB"
       }
     ]
   },
   {
     profession: "Teacher",
+    icon: "📚",
     variants: [
       {
         title: "Education Leader",
-        description: "Professional portfolio for academic excellence",
+        description: "Professional portfolio highlighting academic excellence and teaching methodology. Perfect for educational leaders.",
         path: "/teacher-1",
-        image: "https://source.unsplash.com/random/800x600?education,teaching",
+        image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop",
         color: "#9B59B6"
       },
       {
         title: "Modern Educator",
-        description: "Interactive design showcasing teaching innovation",
+        description: "Interactive design showcasing innovative teaching approaches and digital learning solutions. Ideal for EdTech specialists.",
         path: "/teacher-2",
-        image: "https://source.unsplash.com/random/800x600?classroom,learning",
+        image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&auto=format&fit=crop",
         color: "#E74C3C"
       }
     ]
@@ -193,35 +352,82 @@ const portfolios = [
 const LandingPage = () => {
   return (
     <Container>
-      <Header>
-        <Title>Portfolio Excellence</Title>
-        <Subtitle>
-          Explore our collection of 10 unique portfolio designs across 5 professions.
-          Each profession features two distinct styles, allowing you to choose the perfect
-          presentation for your professional journey.
-        </Subtitle>
-      </Header>
+      <BackgroundGradient />
+      <Content>
+        <Header>
+          <Title
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            Portfolio Excellence
+          </Title>
+          <Subtitle
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          >
+            Explore <span>10 unique portfolio designs</span> across 5 professions.
+            Choose your perfect presentation style and showcase your professional journey.
+          </Subtitle>
+        </Header>
 
-      {portfolios.map((profession, profIndex) => (
-        <ProfessionSection key={profIndex}>
-          <ProfessionTitle>{profession.profession}</ProfessionTitle>
-          <VariantsGrid>
-            {profession.variants.map((variant, varIndex) => (
-              <StyledLink to={variant.path} key={varIndex}>
-                <Card
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: (profIndex * 2 + varIndex) * 0.1 }}
-                >
-                  <CardImage src={variant.image} alt={variant.title} />
-                  <CardTitle style={{ color: variant.color }}>{variant.title}</CardTitle>
-                  <CardDescription>{variant.description}</CardDescription>
-                </Card>
-              </StyledLink>
-            ))}
-          </VariantsGrid>
-        </ProfessionSection>
-      ))}
+        {portfolios.map((profession, profIndex) => (
+          <ProfessionSection
+            key={profIndex}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 * profIndex, ease: "easeOut" }}
+          >
+            <ProfessionHeader>
+              <ProfessionIcon
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 * profIndex }}
+              >
+                {profession.icon}
+              </ProfessionIcon>
+              <ProfessionTitle>{profession.profession}</ProfessionTitle>
+            </ProfessionHeader>
+            <VariantsGrid>
+              {profession.variants.map((variant, varIndex) => (
+                <StyledLink to={variant.path} key={varIndex}>
+                  <Card
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ 
+                      duration: 0.5, 
+                      delay: (profIndex * 2 + varIndex) * 0.1,
+                      ease: "easeOut"
+                    }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <CardImage
+                      src={variant.image}
+                      alt={variant.title}
+                      whileHover={{ scale: 1.05, filter: "grayscale(0%)" }}
+                    />
+                    <CardContent>
+                      <CardTitle>
+                        <CardNumber>{String(varIndex + 1).padStart(2, '0')}</CardNumber>
+                        {variant.title}
+                      </CardTitle>
+                      <CardDescription>{variant.description}</CardDescription>
+                      <ReadMore
+                        whileHover={{ x: 5 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        View Portfolio
+                      </ReadMore>
+                    </CardContent>
+                  </Card>
+                </StyledLink>
+              ))}
+            </VariantsGrid>
+          </ProfessionSection>
+        ))}
+      </Content>
     </Container>
   );
 };
