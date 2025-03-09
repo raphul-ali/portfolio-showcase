@@ -2,7 +2,7 @@
   "name": "portfolio-showcase",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://{username}.github.io/portfolio-showcase",
+  "homepage": "https://raphul-ali.github.io/portfolio-showcase",
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
