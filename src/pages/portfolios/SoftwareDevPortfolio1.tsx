@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const Container = styled.div`
   min-height: 100vh;
-  background: #0a192f;
-  color: #e6f1ff;
+  background: #f8fafc;
+  color: #1e293b;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
 `;
 
 const Nav = styled.nav`
@@ -13,19 +14,19 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(10, 25, 47, 0.95);
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-  backdrop-filter: blur(10px);
 `;
 
 const Logo = styled.div`
-  font-family: 'JetBrains Mono', monospace;
   font-size: 1.5rem;
-  color: #64ffda;
+  font-weight: bold;
+  color: #0f172a;
 `;
 
 const NavLinks = styled.div`
@@ -34,14 +35,14 @@ const NavLinks = styled.div`
 `;
 
 const NavLink = styled.a`
-  color: #8892b0;
+  color: #64748b;
   text-decoration: none;
-  font-size: 0.9rem;
-  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  font-weight: 500;
   transition: color 0.3s ease;
 
   &:hover {
-    color: #64ffda;
+    color: #0f172a;
   }
 `;
 
@@ -49,76 +50,80 @@ const Hero = styled.section`
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 0 15%;
-  position: relative;
+  padding: 0 10%;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  margin-top: 60px;
 `;
 
 const HeroContent = styled.div`
   max-width: 800px;
 `;
 
-const PreTitle = styled(motion.h2)`
-  color: #64ffda;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-`;
-
 const Title = styled(motion.h1)`
-  font-size: 4.5rem;
-  color: #ccd6f6;
+  font-size: 3.5rem;
+  color: #0f172a;
   margin-bottom: 1rem;
-  line-height: 1.1;
+  line-height: 1.2;
 `;
 
 const Subtitle = styled(motion.h2)`
-  font-size: 3.5rem;
-  color: #8892b0;
+  font-size: 1.8rem;
+  color: #475569;
   margin-bottom: 2rem;
 `;
 
-const Description = styled(motion.p)`
-  color: #8892b0;
-  font-size: 1.2rem;
-  max-width: 540px;
-  line-height: 1.6;
+const TechStack = styled(motion.div)`
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
   margin-bottom: 2rem;
+`;
+
+const TechTag = styled.span`
+  padding: 0.5rem 1rem;
+  background: white;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #475569;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 `;
 
 const Section = styled.section`
-  padding: 100px 15%;
+  padding: 6rem 10%;
+  background: white;
 `;
 
-const SectionTitle = styled.h3`
-  font-size: 2rem;
-  color: #ccd6f6;
+const SectionTitle = styled.h2`
+  font-size: 2.5rem;
+  color: #0f172a;
   margin-bottom: 3rem;
-  display: flex;
-  align-items: center;
-  font-family: 'JetBrains Mono', monospace;
+  text-align: center;
+  position: relative;
 
   &::after {
     content: '';
-    display: block;
-    height: 1px;
-    width: 300px;
-    background: #233554;
-    margin-left: 20px;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: #3b82f6;
+    border-radius: 2px;
   }
 `;
 
 const ProjectGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
 `;
 
 const ProjectCard = styled(motion.div)`
-  background: #112240;
-  border-radius: 4px;
-  padding: 2rem;
-  position: relative;
-  cursor: pointer;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 
   &:hover {
@@ -126,158 +131,159 @@ const ProjectCard = styled(motion.div)`
   }
 `;
 
-const ProjectHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 2rem;
+const ProjectImage = styled.div`
+  height: 200px;
+  background: #e2e8f0;
+  position: relative;
+  overflow: hidden;
 `;
 
-const ProjectIcon = styled.div`
-  color: #64ffda;
-  font-size: 2.5rem;
+const ProjectContent = styled.div`
+  padding: 2rem;
 `;
 
-const ProjectTitle = styled.h4`
-  color: #ccd6f6;
+const ProjectTitle = styled.h3`
   font-size: 1.5rem;
+  color: #0f172a;
   margin-bottom: 1rem;
 `;
 
 const ProjectDescription = styled.p`
-  color: #8892b0;
-  font-size: 1rem;
+  color: #64748b;
   line-height: 1.6;
   margin-bottom: 1.5rem;
 `;
 
-const TechList = styled.ul`
+const ProjectTags = styled.div`
   display: flex;
+  gap: 0.5rem;
   flex-wrap: wrap;
-  gap: 1rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-family: 'JetBrains Mono', monospace;
+`;
+
+const ProjectTag = styled.span`
+  padding: 0.25rem 0.75rem;
+  background: #f1f5f9;
+  border-radius: 15px;
   font-size: 0.8rem;
+  color: #475569;
 `;
 
-const TechItem = styled.li`
-  color: #64ffda;
+const StatsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
 `;
 
-const ArchitectureSection = styled.div`
-  margin-top: 2rem;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
+const StatCard = styled(motion.div)`
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
 `;
 
-const ArchitectureTitle = styled.h5`
-  color: #ccd6f6;
-  font-family: 'JetBrains Mono', monospace;
+const StatValue = styled.div`
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #3b82f6;
+  margin-bottom: 0.5rem;
+`;
+
+const StatLabel = styled.div`
   font-size: 1rem;
-  margin-bottom: 1rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 `;
 
-const ArchitectureDetails = styled.pre`
-  color: #8892b0;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8rem;
-  white-space: pre-wrap;
-  line-height: 1.4;
-`;
+const stats = [
+  { value: "5+", label: "Years Experience" },
+  { value: "50+", label: "Projects Completed" },
+  { value: "30+", label: "Happy Clients" },
+  { value: "99%", label: "Success Rate" }
+];
+
+const techStack = [
+  "JavaScript", "TypeScript", "React", "Node.js", "Python",
+  "AWS", "Docker", "GraphQL", "MongoDB", "PostgreSQL"
+];
 
 const projects = [
   {
-    title: "Enterprise Resource Planning System",
-    description: "Scalable ERP solution with microservices architecture, handling 10M+ daily transactions for Fortune 500 companies.",
-    tech: ["Java", "Spring Boot", "Kubernetes", "PostgreSQL", "Redis"],
-    architecture: `
-├── Microservices
-│   ├── User Service
-│   ├── Inventory Service
-│   ├── Order Service
-│   └── Analytics Service
-├── Message Queue
-└── API Gateway
-    `
+    title: "E-commerce Platform",
+    description: "Built a scalable e-commerce platform using microservices architecture, handling 100K+ daily users.",
+    tags: ["Node.js", "React", "MongoDB", "Docker", "AWS"]
   },
   {
-    title: "AI-Powered Code Analysis Platform",
-    description: "Static code analysis tool using machine learning to detect potential bugs and security vulnerabilities in real-time.",
-    tech: ["Python", "TensorFlow", "FastAPI", "Docker", "MongoDB"],
-    architecture: `
-├── ML Pipeline
-│   ├── Code Parser
-│   ├── Feature Extractor
-│   └── Prediction Engine
-├── API Layer
-└── Real-time Analysis
-    `
+    title: "AI-Powered Analytics",
+    description: "Developed a machine learning platform for real-time data analytics and predictive modeling.",
+    tags: ["Python", "TensorFlow", "React", "FastAPI", "PostgreSQL"]
   },
   {
-    title: "Distributed Trading Platform",
-    description: "High-frequency trading platform processing 100K+ transactions per second with sub-millisecond latency.",
-    tech: ["C++", "gRPC", "Apache Kafka", "InfluxDB", "Grafana"],
-    architecture: `
-├── Order Engine
-│   ├── Matching Engine
-│   └── Risk Manager
-├── Market Data
-└── Settlement
-    `
+    title: "Blockchain Wallet",
+    description: "Created a secure cryptocurrency wallet with multi-signature support and real-time trading.",
+    tags: ["Solidity", "React", "Node.js", "Web3.js", "TypeScript"]
   }
 ];
 
 const SoftwareDevPortfolio1: React.FC = () => {
-  const [expandedProject, setExpandedProject] = useState<number | null>(null);
-
   return (
     <Container>
       <Nav>
-        <Logo>{"{ SD }"}</Logo>
+        <Logo>DEVELOPER</Logo>
         <NavLinks>
           <NavLink href="#about">About</NavLink>
           <NavLink href="#projects">Projects</NavLink>
+          <NavLink href="#skills">Skills</NavLink>
           <NavLink href="#contact">Contact</NavLink>
         </NavLinks>
       </Nav>
 
       <Hero>
         <HeroContent>
-          <PreTitle
+          <Title
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Hello, I'm
-          </PreTitle>
-          <Title
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            Sarah Mitchell.
+            Full Stack Software Developer
           </Title>
           <Subtitle
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
-            I architect scalable solutions.
+            Building scalable solutions for complex problems
           </Subtitle>
-          <Description
+          <TechStack
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
-            I'm a software architect specializing in designing and implementing enterprise-scale
-            distributed systems. With 10+ years of experience, I focus on creating robust,
-            scalable, and maintainable solutions.
-          </Description>
+            {techStack.map((tech, index) => (
+              <TechTag key={index}>{tech}</TechTag>
+            ))}
+          </TechStack>
         </HeroContent>
       </Hero>
+
+      <Section>
+        <SectionTitle>Key Metrics</SectionTitle>
+        <StatsGrid>
+          {stats.map((stat, index) => (
+            <StatCard
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <StatValue>{stat.value}</StatValue>
+              <StatLabel>{stat.label}</StatLabel>
+            </StatCard>
+          ))}
+        </StatsGrid>
+      </Section>
 
       <Section id="projects">
         <SectionTitle>Featured Projects</SectionTitle>
@@ -285,34 +291,20 @@ const SoftwareDevPortfolio1: React.FC = () => {
           {projects.map((project, index) => (
             <ProjectCard
               key={index}
-              onClick={() => setExpandedProject(expandedProject === index ? null : index)}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2 }}
+              transition={{ delay: index * 0.1 }}
             >
-              <ProjectHeader>
-                <ProjectIcon>⚡</ProjectIcon>
-              </ProjectHeader>
-              <ProjectTitle>{project.title}</ProjectTitle>
-              <ProjectDescription>{project.description}</ProjectDescription>
-              <TechList>
-                {project.tech.map((tech, i) => (
-                  <TechItem key={i}>{tech}</TechItem>
-                ))}
-              </TechList>
-              <AnimatePresence>
-                {expandedProject === index && (
-                  <ArchitectureSection
-                    as={motion.div}
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                  >
-                    <ArchitectureTitle>Architecture Overview</ArchitectureTitle>
-                    <ArchitectureDetails>{project.architecture}</ArchitectureDetails>
-                  </ArchitectureSection>
-                )}
-              </AnimatePresence>
+              <ProjectImage />
+              <ProjectContent>
+                <ProjectTitle>{project.title}</ProjectTitle>
+                <ProjectDescription>{project.description}</ProjectDescription>
+                <ProjectTags>
+                  {project.tags.map((tag, tagIndex) => (
+                    <ProjectTag key={tagIndex}>{tag}</ProjectTag>
+                  ))}
+                </ProjectTags>
+              </ProjectContent>
             </ProjectCard>
           ))}
         </ProjectGrid>
