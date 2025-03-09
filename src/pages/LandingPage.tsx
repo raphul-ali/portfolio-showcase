@@ -7,9 +7,13 @@ const Container = styled.div`
   min-height: 100vh;
   background: #0f172a;
   color: white;
-  padding: 2rem;
+  padding: 1rem;
   position: relative;
   overflow: hidden;
+
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
 `;
 
 const BackgroundGradient = styled.div`
@@ -31,30 +35,46 @@ const Content = styled.div`
 
 const Header = styled.header`
   text-align: left;
-  margin-bottom: 6rem;
-  padding-top: 4rem;
+  margin-bottom: 3rem;
+  padding-top: 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 2rem 1rem;
+
+  @media (min-width: 768px) {
+    margin-bottom: 6rem;
+    padding-top: 4rem;
+    padding: 4rem 2rem;
+  }
 `;
 
 const Title = styled(motion.h1)`
-  font-size: 4.5rem;
-  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
   color: #fff;
   font-weight: 700;
   background: linear-gradient(45deg, #7c3aed, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   position: relative;
+
+  @media (min-width: 768px) {
+    font-size: 4.5rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const Subtitle = styled(motion.div)`
-  font-size: 2rem;
+  font-size: 1.25rem;
   color: #94a3b8;
   max-width: 600px;
   line-height: 1.6;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
+
+  @media (min-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
 
   span {
     color: #7c3aed;
@@ -97,70 +117,105 @@ const SectionNumber = styled.span`
 `;
 
 const ProfessionSection = styled(motion.section)`
-  margin-bottom: 8rem;
+  margin-bottom: 4rem;
+
+  @media (min-width: 768px) {
+    margin-bottom: 8rem;
+  }
 `;
 
 const ProfessionHeader = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 3rem;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
+
+  @media (min-width: 768px) {
+    gap: 1rem;
+    margin-bottom: 3rem;
+    padding: 0 2rem;
+  }
 `;
 
 const ProfessionIcon = styled(motion.div)`
-  font-size: 2.5rem;
+  font-size: 2rem;
   background: linear-gradient(45deg, #7c3aed, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (min-width: 768px) {
+    font-size: 2.5rem;
+  }
 `;
 
 const ProfessionTitle = styled.h2`
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   color: #fff;
   position: relative;
+  
+  @media (min-width: 768px) {
+    font-size: 2.5rem;
+  }
   
   &::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -8px;
     left: 0;
-    width: 60px;
-    height: 3px;
+    width: 40px;
+    height: 2px;
     background: linear-gradient(45deg, #7c3aed, #ec4899);
+
+    @media (min-width: 768px) {
+      bottom: -10px;
+      width: 60px;
+      height: 3px;
+    }
   }
 `;
 
 const VariantsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 3rem;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
   max-width: 1200px;
-  margin: 3rem auto 0;
-  padding: 0 2rem;
+  margin: 2rem auto 0;
+  padding: 0 1rem;
 
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    margin: 3rem auto 0;
+    padding: 0 2rem;
   }
 `;
 
 const Card = styled(motion.div)`
   background: rgba(30, 41, 59, 0.5);
-  border-radius: 20px;
+  border-radius: 15px;
   overflow: hidden;
   border: 1px solid rgba(124, 58, 237, 0.1);
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
 
+  @media (min-width: 768px) {
+    border-radius: 20px;
+  }
+
   &:hover {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
     border-color: #7c3aed;
     box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.3);
+
+    @media (min-width: 768px) {
+      transform: translateY(-10px);
+    }
   }
 `;
 
@@ -170,55 +225,89 @@ const StyledLink = styled(Link)`
 `;
 
 const CardContent = styled.div`
-  padding: 2rem;
+  padding: 1.25rem;
+
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
 `;
 
 const CardTitle = styled.h3`
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   background: linear-gradient(45deg, #7c3aed, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media (min-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    gap: 1rem;
+  }
 `;
 
 const CardNumber = styled.span`
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #7c3aed;
   font-family: monospace;
+
+  @media (min-width: 768px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const CardDescription = styled.p`
   color: #94a3b8;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+
+  @media (min-width: 768px) {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const CardImage = styled(motion.img)`
   width: 100%;
-  height: 250px;
+  height: 180px;
   object-fit: cover;
   transition: transform 0.3s ease;
   filter: grayscale(30%);
 
+  @media (min-width: 768px) {
+    height: 250px;
+  }
+
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
     filter: grayscale(0%);
+
+    @media (min-width: 768px) {
+      transform: scale(1.05);
+    }
   }
 `;
 
 const ReadMore = styled(motion.span)`
   color: #7c3aed;
-  font-size: 1rem;
+  font-size: 0.875rem;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
+  gap: 0.375rem;
+  margin-top: 0.75rem;
   position: relative;
   
+  @media (min-width: 768px) {
+    font-size: 1rem;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
   &::after {
     content: '→';
     transition: transform 0.3s ease;

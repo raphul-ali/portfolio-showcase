@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
@@ -10,7 +10,7 @@ const Container = styled.div`
 `;
 
 const Nav = styled.nav`
-  padding: 1.5rem 2rem;
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,25 +21,75 @@ const Nav = styled.nav`
   left: 0;
   right: 0;
   z-index: 100;
+
+  @media (min-width: 768px) {
+    padding: 1.5rem 2rem;
+  }
 `;
 
 const Logo = styled.div`
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: bold;
   color: #0f172a;
+
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const NavLinks = styled.div`
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+    gap: 2rem;
+  }
+`;
+
+const MobileMenuButton = styled.button`
+  background: none;
+  border: none;
+  color: #0f172a;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: block;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+const MobileMenu = styled.div<{ $isOpen: boolean }>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(248, 250, 252, 0.98);
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 2rem;
+  transform: translateX(${props => props.$isOpen ? '0' : '100%'});
+  transition: transform 0.3s ease;
+  z-index: 99;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 `;
 
 const NavLink = styled.a`
   color: #64748b;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 500;
   transition: color 0.3s ease;
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
 
   &:hover {
     color: #0f172a;
@@ -50,81 +100,131 @@ const Hero = styled.section`
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 0 10%;
+  padding: 0 1.5rem;
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   margin-top: 60px;
+
+  @media (min-width: 768px) {
+    padding: 0 10%;
+  }
 `;
 
 const HeroContent = styled.div`
   max-width: 800px;
+  width: 100%;
 `;
 
 const Title = styled(motion.h1)`
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   color: #0f172a;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   line-height: 1.2;
+
+  @media (min-width: 768px) {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const Subtitle = styled(motion.h2)`
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   color: #475569;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+
+  @media (min-width: 768px) {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const TechStack = styled(motion.div)`
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   flex-wrap: wrap;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+
+  @media (min-width: 768px) {
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const TechTag = styled.span`
-  padding: 0.5rem 1rem;
+  padding: 0.375rem 0.75rem;
   background: white;
-  border-radius: 20px;
-  font-size: 0.9rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
   color: #475569;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  @media (min-width: 768px) {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+  }
 `;
 
 const Section = styled.section`
-  padding: 6rem 10%;
+  padding: 3rem 1.5rem;
   background: white;
+
+  @media (min-width: 768px) {
+    padding: 6rem 10%;
+  }
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #0f172a;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   text-align: center;
   position: relative;
+
+  @media (min-width: 768px) {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+  }
 
   &::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -8px;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
+    width: 40px;
+    height: 3px;
     background: #3b82f6;
     border-radius: 2px;
+
+    @media (min-width: 768px) {
+      bottom: -10px;
+      width: 60px;
+      height: 4px;
+    }
   }
 `;
 
 const ProjectGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
 `;
 
 const ProjectCard = styled(motion.div)`
   background: white;
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+
+  @media (min-width: 768px) {
+    border-radius: 10px;
+  }
 
   &:hover {
     transform: translateY(-5px);
@@ -132,69 +232,119 @@ const ProjectCard = styled(motion.div)`
 `;
 
 const ProjectImage = styled.div<{ $image: string }>`
-  height: 200px;
+  height: 180px;
   background: url(${props => props.$image}) center/cover;
   position: relative;
   overflow: hidden;
+
+  @media (min-width: 768px) {
+    height: 200px;
+  }
 `;
 
 const ProjectContent = styled.div`
-  padding: 2rem;
+  padding: 1.5rem;
+
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
 `;
 
 const ProjectTitle = styled.h3`
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: #0f172a;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const ProjectDescription = styled.p`
   color: #64748b;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+
+  @media (min-width: 768px) {
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+  }
 `;
 
 const ProjectTags = styled.div`
   display: flex;
-  gap: 0.5rem;
+  gap: 0.375rem;
   flex-wrap: wrap;
+
+  @media (min-width: 768px) {
+    gap: 0.5rem;
+  }
 `;
 
 const ProjectTag = styled.span`
-  padding: 0.25rem 0.75rem;
+  padding: 0.2rem 0.5rem;
   background: #f1f5f9;
-  border-radius: 15px;
-  font-size: 0.8rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
   color: #475569;
+
+  @media (min-width: 768px) {
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+  }
 `;
 
 const StatsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 3rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
 `;
 
 const StatCard = styled(motion.div)`
   background: white;
-  padding: 2rem;
-  border-radius: 10px;
+  padding: 1.5rem;
+  border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
+
+  @media (min-width: 768px) {
+    padding: 2rem;
+    border-radius: 10px;
+  }
 `;
 
 const StatValue = styled.div`
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
   color: #3b82f6;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.375rem;
+
+  @media (min-width: 768px) {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
 `;
 
 const StatLabel = styled.div`
-  font-size: 1rem;
+  font-size: 0.875rem;
   color: #64748b;
   text-transform: uppercase;
   letter-spacing: 1px;
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const stats = [
@@ -231,6 +381,8 @@ const projects = [
 ];
 
 const SoftwareDevPortfolio1: React.FC = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <Container>
       <Nav>
@@ -241,7 +393,17 @@ const SoftwareDevPortfolio1: React.FC = () => {
           <NavLink href="#skills">Skills</NavLink>
           <NavLink href="#contact">Contact</NavLink>
         </NavLinks>
+        <MobileMenuButton onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          ☰
+        </MobileMenuButton>
       </Nav>
+
+      <MobileMenu $isOpen={isMobileMenuOpen}>
+        <NavLink href="#about" onClick={() => setIsMobileMenuOpen(false)}>About</NavLink>
+        <NavLink href="#projects" onClick={() => setIsMobileMenuOpen(false)}>Projects</NavLink>
+        <NavLink href="#skills" onClick={() => setIsMobileMenuOpen(false)}>Skills</NavLink>
+        <NavLink href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</NavLink>
+      </MobileMenu>
 
       <Hero>
         <HeroContent>

@@ -27,7 +27,7 @@ const Content = styled.div`
 `;
 
 const Nav = styled(motion.nav)`
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -38,27 +38,77 @@ const Nav = styled(motion.nav)`
   z-index: 100;
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
+
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
 `;
 
 const Logo = styled.div`
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: bold;
   background: linear-gradient(45deg, #64ffda, #50c8ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const NavItems = styled.div`
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+    gap: 2rem;
+  }
+`;
+
+const MobileMenuButton = styled.button`
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: block;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+const MobileMenu = styled.div<{ $isOpen: boolean }>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 2rem;
+  transform: translateX(${props => props.$isOpen ? '0' : '100%'});
+  transition: transform 0.3s ease;
+  z-index: 99;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 `;
 
 const NavItem = styled(motion.a)`
   color: #fff;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 1.2rem;
   position: relative;
   cursor: pointer;
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
 
   &::after {
     content: '';
@@ -81,43 +131,75 @@ const Hero = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
+
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
 `;
 
 const HeroContent = styled(motion.div)`
   max-width: 800px;
+  padding: 0 1rem;
+
+  @media (min-width: 768px) {
+    padding: 0 2rem;
+  }
 `;
 
 const Title = styled(motion.h1)`
-  font-size: 4rem;
-  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
   background: linear-gradient(45deg, #64ffda, #50c8ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+
+  @media (min-width: 768px) {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const Subtitle = styled(motion.p)`
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const TechStackContainer = styled(motion.div)`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
-  margin: 2rem 0;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+
+  @media (min-width: 768px) {
+    gap: 1rem;
+    margin: 2rem 0;
+  }
 `;
 
 const TechBadge = styled(motion.div)`
-  padding: 0.5rem 1rem;
+  padding: 0.375rem 0.75rem;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  font-size: 0.9rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.3s ease;
+
+  @media (min-width: 768px) {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+  }
 
   &:hover {
     background: rgba(255, 255, 255, 0.2);
@@ -126,24 +208,38 @@ const TechBadge = styled(motion.div)`
 `;
 
 const ProjectsSection = styled.section`
-  padding: 4rem 2rem;
+  padding: 2rem 1rem;
+
+  @media (min-width: 768px) {
+    padding: 4rem 2rem;
+  }
 `;
 
 const ProjectsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
 `;
 
 const ProjectCard = styled(motion.div)<{ $isActive: boolean }>`
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
-  padding: 2rem;
+  border-radius: 15px;
+  padding: 1.5rem;
   cursor: pointer;
   position: relative;
   overflow: hidden;
+
+  @media (min-width: 768px) {
+    border-radius: 20px;
+    padding: 2rem;
+  }
 
   ${props => props.$isActive && `
     background: rgba(255, 255, 255, 0.1);
@@ -155,11 +251,15 @@ const ProjectCard = styled(motion.div)<{ $isActive: boolean }>`
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 3px;
     background: linear-gradient(45deg, #64ffda, #50c8ff);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.3s ease;
+
+    @media (min-width: 768px) {
+      height: 4px;
+    }
   }
 
   &:hover::before {
@@ -168,35 +268,62 @@ const ProjectCard = styled(motion.div)<{ $isActive: boolean }>`
 `;
 
 const ProjectTitle = styled.h3`
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
   color: #fff;
+
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const ProjectDescription = styled.p`
   color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  font-size: 0.9rem;
+
+  @media (min-width: 768px) {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    font-size: 1rem;
+  }
 `;
 
 const DemoSection = styled(motion.div)`
-  margin-top: 1.5rem;
-  padding: 1rem;
+  margin-top: 1rem;
+  padding: 0.75rem;
   background: rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
+  border-radius: 8px;
+
+  @media (min-width: 768px) {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 10px;
+  }
 `;
 
 const DemoTitle = styled.h4`
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #64ffda;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const DemoContent = styled.div`
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.7);
   white-space: pre-wrap;
+
+  @media (min-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const projects = [
@@ -244,6 +371,7 @@ await contract.connect(signer)
 
 const SoftwareDevPortfolio2: React.FC = () => {
   const [activeProject, setActiveProject] = useState<number | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const techStack = [
     "TypeScript", "React", "Node.js", "Python",
@@ -266,7 +394,16 @@ const SoftwareDevPortfolio2: React.FC = () => {
             <NavItem href="#projects">Projects</NavItem>
             <NavItem href="#contact">Contact</NavItem>
           </NavItems>
+          <MobileMenuButton onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            ☰
+          </MobileMenuButton>
         </Nav>
+
+        <MobileMenu $isOpen={isMobileMenuOpen}>
+          <NavItem href="#about" onClick={() => setIsMobileMenuOpen(false)}>About</NavItem>
+          <NavItem href="#projects" onClick={() => setIsMobileMenuOpen(false)}>Projects</NavItem>
+          <NavItem href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</NavItem>
+        </MobileMenu>
 
         <Hero>
           <HeroContent>

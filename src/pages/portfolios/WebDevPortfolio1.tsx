@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,7 @@ const Container = styled.div`
 `;
 
 const Nav = styled.nav`
-  padding: 1.5rem;
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,25 +21,75 @@ const Nav = styled.nav`
   background: rgba(26, 27, 30, 0.9);
   backdrop-filter: blur(10px);
   z-index: 100;
+
+  @media (min-width: 768px) {
+    padding: 1.5rem;
+  }
 `;
 
 const Logo = styled.div`
   font-family: 'Fira Code', monospace;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #61DAFB;
+
+  @media (min-width: 768px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const NavLinks = styled.div`
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+    gap: 2rem;
+  }
+`;
+
+const MobileMenuButton = styled.button`
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: block;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+const MobileMenu = styled.div<{ $isOpen: boolean }>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(26, 27, 30, 0.98);
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 2rem;
+  transform: translateX(${props => props.$isOpen ? '0' : '100%'});
+  transition: transform 0.3s ease;
+  z-index: 99;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 `;
 
 const NavLink = styled.a`
   color: #ffffff;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   cursor: pointer;
   transition: color 0.3s ease;
+
+  @media (min-width: 768px) {
+    font-size: 0.9rem;
+  }
 
   &:hover {
     color: #61DAFB;
@@ -47,44 +97,65 @@ const NavLink = styled.a`
 `;
 
 const Hero = styled.header`
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 15%;
+  padding: 0 1.5rem;
   position: relative;
+
+  @media (min-width: 768px) {
+    padding: 0 15%;
+  }
 `;
 
 const Greeting = styled(motion.p)`
   color: #61DAFB;
   font-family: 'Fira Code', monospace;
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-bottom: 1rem;
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const Title = styled(motion.h1)`
-  font-size: 4rem;
+  font-size: 2.5rem;
   margin-bottom: 1rem;
   line-height: 1.1;
+
+  @media (min-width: 768px) {
+    font-size: 4rem;
+  }
 `;
 
 const Subtitle = styled(motion.h2)`
-  font-size: 3rem;
+  font-size: 2rem;
   color: #8892b0;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+
+  @media (min-width: 768px) {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const Description = styled(motion.p)`
   color: #8892b0;
-  font-size: 1.2rem;
+  font-size: 1rem;
   max-width: 500px;
   line-height: 1.6;
   margin-bottom: 2rem;
+
+  @media (min-width: 768px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const Button = styled(motion.a)`
   display: inline-block;
-  padding: 1rem 2rem;
+  padding: 0.75rem 1.5rem;
   border: 1px solid #61DAFB;
   color: #61DAFB;
   text-decoration: none;
@@ -93,44 +164,70 @@ const Button = styled(motion.a)`
   transition: all 0.3s ease;
   cursor: pointer;
 
+  @media (min-width: 768px) {
+    padding: 1rem 2rem;
+  }
+
   &:hover {
     background: rgba(97, 218, 251, 0.1);
   }
 `;
 
 const Section = styled.section`
-  padding: 8rem 15%;
+  padding: 4rem 1.5rem;
+
+  @media (min-width: 768px) {
+    padding: 8rem 15%;
+  }
 `;
 
 const SectionTitle = styled.h3`
-  font-size: 2rem;
+  font-size: 1.75rem;
   color: #ccd6f6;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   display: flex;
   align-items: center;
+
+  @media (min-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
 
   &::after {
     content: '';
     display: block;
     height: 1px;
-    width: 300px;
+    width: 100px;
     background: #233554;
     margin-left: 20px;
+
+    @media (min-width: 768px) {
+      width: 300px;
+    }
   }
 `;
 
 const ProjectGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
 `;
 
 const ProjectCard = styled(motion.div)`
-  background: white;
-  border-radius: 10px;
+  background: #233554;
+  border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+
+  @media (min-width: 768px) {
+    border-radius: 10px;
+  }
 
   &:hover {
     transform: translateY(-5px);
@@ -139,35 +236,62 @@ const ProjectCard = styled(motion.div)`
 
 const ProjectImage = styled.img`
   width: 100%;
-  height: 200px;
+  height: 180px;
   object-fit: cover;
+
+  @media (min-width: 768px) {
+    height: 200px;
+  }
 `;
 
 const ProjectContent = styled.div`
-  padding: 1.5rem;
+  padding: 1.25rem;
+
+  @media (min-width: 768px) {
+    padding: 1.5rem;
+  }
 `;
 
 const ProjectTitle = styled.h4`
   color: #ccd6f6;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const ProjectDescription = styled.p`
   color: #8892b0;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+
+  @media (min-width: 768px) {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
 `;
 
 const TechStack = styled.div`
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   font-family: 'Fira Code', monospace;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: #61DAFB;
+
+  @media (min-width: 768px) {
+    gap: 1rem;
+    font-size: 0.8rem;
+  }
 `;
 
 const TechTag = styled.span`
-  background: #233554;
+  background: #1a1b1e;
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
 `;
@@ -194,6 +318,8 @@ const projects = [
 ];
 
 const WebDevPortfolio1: React.FC = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <Container>
       <Nav>
@@ -203,7 +329,16 @@ const WebDevPortfolio1: React.FC = () => {
           <NavLink href="#projects">Projects</NavLink>
           <NavLink href="#contact">Contact</NavLink>
         </NavLinks>
+        <MobileMenuButton onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          ☰
+        </MobileMenuButton>
       </Nav>
+
+      <MobileMenu $isOpen={isMobileMenuOpen}>
+        <NavLink href="#about" onClick={() => setIsMobileMenuOpen(false)}>About</NavLink>
+        <NavLink href="#projects" onClick={() => setIsMobileMenuOpen(false)}>Projects</NavLink>
+        <NavLink href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</NavLink>
+      </MobileMenu>
 
       <Hero>
         <Greeting
