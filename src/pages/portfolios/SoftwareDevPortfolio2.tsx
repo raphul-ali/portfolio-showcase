@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -326,18 +326,19 @@ const SoftwareDevPortfolio2: React.FC = () => {
                     </TechBadge>
                   ))}
                 </TechStackContainer>
-                <AnimatePresence mode="wait">
-                  {activeProject === index && (
-                    <DemoSection
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                    >
+                {activeProject === index && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <DemoSection>
                       <DemoTitle>Demo Code</DemoTitle>
                       <DemoContent>{project.demo}</DemoContent>
                     </DemoSection>
-                  )}
-                </AnimatePresence>
+                  </motion.div>
+                )}
               </ProjectCard>
             ))}
           </ProjectsGrid>

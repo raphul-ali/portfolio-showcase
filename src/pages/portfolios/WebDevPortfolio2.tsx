@@ -108,6 +108,10 @@ const ProjectOverlay = styled(motion.div)`
   justify-content: flex-end;
 `;
 
+const ProjectContent = styled.div`
+  padding: 1.5rem;
+`;
+
 const ProjectTitle = styled.h3`
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -207,18 +211,21 @@ const WebDevPortfolio2: React.FC = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.1 }}
               >
-                <ProjectTitle style={{ color: project.color }}>{project.title}</ProjectTitle>
-                <AnimatePresence mode="wait">
+                <ProjectContent>
+                  <ProjectTitle style={{ color: project.color }}>{project.title}</ProjectTitle>
                   {expandedIndex === index && (
-                    <ProjectDescription
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 20 }}
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      {project.description}
-                    </ProjectDescription>
+                      <ProjectDescription>
+                        {project.description}
+                      </ProjectDescription>
+                    </motion.div>
                   )}
-                </AnimatePresence>
+                </ProjectContent>
                 <TechStack>
                   {project.tech.map((tech, i) => (
                     <TechTag
