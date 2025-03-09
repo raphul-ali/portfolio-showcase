@@ -188,7 +188,7 @@ const ArtistPortfolio = () => {
         ))}
       </Gallery>
 
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {selectedArtwork && (
           <Modal
             initial={{ opacity: 0 }}
