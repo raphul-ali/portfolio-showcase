@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -189,25 +189,20 @@ const ArtistPortfolio: React.FC = () => {
       </Gallery>
 
       {selectedArtwork && (
-        <AnimatePresence>
-          <Modal
-            key="modal"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedArtwork(null)}
+        <Modal
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          onClick={() => setSelectedArtwork(null)}
+        >
+          <ModalContent
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            onClick={e => e.stopPropagation()}
           >
-            <ModalContent
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.8 }}
-              onClick={e => e.stopPropagation()}
-            >
-              <CloseButton onClick={() => setSelectedArtwork(null)}>×</CloseButton>
-              <ModalImage src={selectedArtwork.image} alt={selectedArtwork.title} />
-            </ModalContent>
-          </Modal>
-        </AnimatePresence>
+            <CloseButton onClick={() => setSelectedArtwork(null)}>×</CloseButton>
+            <ModalImage src={selectedArtwork.image} alt={selectedArtwork.title} />
+          </ModalContent>
+        </Modal>
       )}
     </Container>
   );
