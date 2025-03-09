@@ -209,7 +209,7 @@ const CampaignDescription = styled(motion.div)`
   margin-bottom: 1rem;
 `;
 
-const CampaignStats = styled(motion.div)`
+const CampaignStats = styled.div`
   display: flex;
   gap: 2rem;
   margin-top: 1rem;
@@ -232,39 +232,66 @@ const StatItem = styled.div`
   }
 `;
 
-const campaigns = [
+const CampaignMetrics = styled.div`
+  margin-top: 1.5rem;
+`;
+
+const StatValue = styled.span`
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+`;
+
+const StatLabel = styled.span`
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+`;
+
+interface CampaignStat {
+  value: string;
+  label: string;
+}
+
+interface Campaign {
+  title: string;
+  description: string;
+  stats: CampaignStat[];
+  image: string;
+}
+
+const campaigns: Campaign[] = [
   {
-    title: "Sustainable Fashion Campaign",
-    image: "https://source.unsplash.com/random/1200x800?fashion,sustainable",
-    description: "Created a viral social media campaign highlighting sustainable fashion practices, reaching millions of environmentally conscious consumers.",
-    stats: {
-      reach: "5.2M",
-      engagement: "28%",
-      shares: "125K",
-      impressions: "8.5M"
-    }
+    title: "Social Media Growth Campaign",
+    description: "Increased brand awareness and engagement through targeted social media campaigns.",
+    stats: [
+      { value: "500K+", label: "Reach" },
+      { value: "25%", label: "Engagement" },
+      { value: "10K+", label: "Shares" },
+      { value: "2M+", label: "Impressions" }
+    ],
+    image: "https://source.unsplash.com/random/1200x800?social,media"
   },
   {
-    title: "Food Delivery App Launch",
-    image: "https://source.unsplash.com/random/1200x800?food,delivery",
-    description: "Orchestrated a multi-platform launch campaign for a new food delivery app, focusing on lifestyle integration and user experience.",
-    stats: {
-      reach: "3.8M",
-      engagement: "32%",
-      shares: "95K",
-      impressions: "6.2M"
-    }
+    title: "Content Marketing Strategy",
+    description: "Developed and executed comprehensive content strategy across multiple platforms.",
+    stats: [
+      { value: "300K+", label: "Views" },
+      { value: "20%", label: "Conversion" },
+      { value: "5K+", label: "Leads" },
+      { value: "1.5M+", label: "Reach" }
+    ],
+    image: "https://source.unsplash.com/random/1200x800?content,marketing"
   },
   {
-    title: "Tech Startup Rebranding",
-    image: "https://source.unsplash.com/random/1200x800?technology,startup",
-    description: "Led a complete brand transformation for a tech startup, including visual identity, messaging, and digital presence.",
-    stats: {
-      reach: "2.5M",
-      engagement: "25%",
-      shares: "78K",
-      impressions: "4.1M"
-    }
+    title: "Email Marketing Campaign",
+    description: "Optimized email campaigns resulting in increased open rates and conversions.",
+    stats: [
+      { value: "45%", label: "Open Rate" },
+      { value: "15%", label: "CTR" },
+      { value: "8K+", label: "Subscribers" },
+      { value: "30%", label: "Growth" }
+    ],
+    image: "https://source.unsplash.com/random/1200x800?email,marketing"
   }
 ];
 
@@ -323,43 +350,37 @@ const DigitalMarketingPortfolio2: React.FC = () => {
                 <CampaignImage src={campaign.image} alt={campaign.title} />
                 <CampaignContent>
                   <CampaignTitle>{campaign.title}</CampaignTitle>
-                  <AnimatePresence mode="wait">
-                    {(activeProject === index || activeProject === null) && (
-                      <CampaignDescription
+                  {(activeProject === index || activeProject === null) && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <CampaignDescription>
+                        {campaign.description}
+                      </CampaignDescription>
+                    </motion.div>
+                  )}
+                  <CampaignMetrics>
+                    {activeProject === index && (
+                      <motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
                       >
-                        {campaign.description}
-                      </CampaignDescription>
+                        <CampaignStats>
+                          {campaign.stats.map((stat, statIndex) => (
+                            <StatItem key={statIndex}>
+                              <StatValue>{stat.value}</StatValue>
+                              <StatLabel>{stat.label}</StatLabel>
+                            </StatItem>
+                          ))}
+                        </CampaignStats>
+                      </motion.div>
                     )}
-                  </AnimatePresence>
-                  <AnimatePresence mode="wait">
-                    {activeProject === index && (
-                      <CampaignStats
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 20 }}
-                      >
-                        <StatItem>
-                          <span>{campaign.stats.reach}</span>
-                          <span>Reach</span>
-                        </StatItem>
-                        <StatItem>
-                          <span>{campaign.stats.engagement}</span>
-                          <span>Engagement</span>
-                        </StatItem>
-                        <StatItem>
-                          <span>{campaign.stats.shares}</span>
-                          <span>Shares</span>
-                        </StatItem>
-                        <StatItem>
-                          <span>{campaign.stats.impressions}</span>
-                          <span>Impressions</span>
-                        </StatItem>
-                      </CampaignStats>
-                    )}
-                  </AnimatePresence>
+                  </CampaignMetrics>
                 </CampaignContent>
               </CampaignCard>
             ))}
