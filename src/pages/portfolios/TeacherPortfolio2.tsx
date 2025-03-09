@@ -220,6 +220,29 @@ const SkillProgress = styled.div<{ $level: number }>`
   border-radius: 2px;
 `;
 
+const TechStack = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+`;
+
+const TechBadge = styled.span`
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  color: #fff;
+`;
+
+const CourseImage = styled.div<{ $image: string }>`
+  height: 200px;
+  background: url(${props => props.$image}) center/cover;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
+  margin: -2rem -2rem 1rem -2rem;
+`;
+
 const digitalSkills = [
   {
     icon: "💻",
@@ -256,15 +279,21 @@ const digitalSkills = [
 const courses = [
   {
     title: "Digital Storytelling",
-    content: "Interactive course combining multimedia elements to enhance student engagement in literature and creative writing."
+    content: "Interactive course combining multimedia elements to enhance student engagement in literature and creative writing.",
+    image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=800&auto=format&fit=crop",
+    tech: ["Video Production", "Interactive Media", "Creative Writing"]
   },
   {
     title: "Virtual Science Lab",
-    content: "Immersive online laboratory experiences using AR/VR technology for hands-on learning in science."
+    content: "Immersive online laboratory experiences using AR/VR technology for hands-on learning in science.",
+    image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&auto=format&fit=crop",
+    tech: ["AR/VR", "3D Modeling", "Lab Simulations"]
   },
   {
     title: "Global Classroom",
-    content: "Collaborative projects connecting students worldwide through virtual exchange programs."
+    content: "Collaborative projects connecting students worldwide through virtual exchange programs.",
+    image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800&auto=format&fit=crop",
+    tech: ["Video Conferencing", "Cultural Exchange", "Project Management"]
   }
 ];
 
@@ -355,8 +384,14 @@ const TeacherPortfolio2: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
+                <CourseImage $image={course.image} />
                 <CardTitle>{course.title}</CardTitle>
                 <CardContent>{course.content}</CardContent>
+                <TechStack>
+                  {course.tech.map((tech, i) => (
+                    <TechBadge key={i}>{tech}</TechBadge>
+                  ))}
+                </TechStack>
               </Card>
             ))}
           </Grid>

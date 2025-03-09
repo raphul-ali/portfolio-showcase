@@ -131,9 +131,9 @@ const ProjectCard = styled(motion.div)`
   }
 `;
 
-const ProjectImage = styled.div`
+const ProjectImage = styled.div<{ $image: string }>`
   height: 200px;
-  background: #e2e8f0;
+  background: url(${props => props.$image}) center/cover;
   position: relative;
   overflow: hidden;
 `;
@@ -213,16 +213,19 @@ const projects = [
   {
     title: "E-commerce Platform",
     description: "Built a scalable e-commerce platform using microservices architecture, handling 100K+ daily users.",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop",
     tags: ["Node.js", "React", "MongoDB", "Docker", "AWS"]
   },
   {
     title: "AI-Powered Analytics",
     description: "Developed a machine learning platform for real-time data analytics and predictive modeling.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop",
     tags: ["Python", "TensorFlow", "React", "FastAPI", "PostgreSQL"]
   },
   {
     title: "Blockchain Wallet",
     description: "Created a secure cryptocurrency wallet with multi-signature support and real-time trading.",
+    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&auto=format&fit=crop",
     tags: ["Solidity", "React", "Node.js", "Web3.js", "TypeScript"]
   }
 ];
@@ -295,7 +298,7 @@ const SoftwareDevPortfolio1: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
             >
-              <ProjectImage />
+              <ProjectImage $image={project.image} />
               <ProjectContent>
                 <ProjectTitle>{project.title}</ProjectTitle>
                 <ProjectDescription>{project.description}</ProjectDescription>

@@ -261,6 +261,14 @@ const MetricItem = styled.div`
   }
 `;
 
+const PortfolioImage = styled.div<{ $image: string }>`
+  height: 200px;
+  background: url(${props => props.$image}) center/cover;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
+`;
+
 const stats = [
   { value: "$2.5B+", label: "Assets Under Management" },
   { value: "15+", label: "Years Experience" },
@@ -289,6 +297,7 @@ const experience = [
 const portfolios = [
   {
     title: "Conservative Growth Fund",
+    image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&auto=format&fit=crop",
     metrics: {
       return: "12.5%",
       risk: "Low",
@@ -298,6 +307,7 @@ const portfolios = [
   },
   {
     title: "High-Yield Bond Portfolio",
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop",
     metrics: {
       return: "8.2%",
       risk: "Medium",
@@ -307,6 +317,7 @@ const portfolios = [
   },
   {
     title: "Global Equity Fund",
+    image: "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?w=800&auto=format&fit=crop",
     metrics: {
       return: "15.8%",
       risk: "High",
@@ -404,6 +415,7 @@ const BankerPortfolio1: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
             >
+              <PortfolioImage $image={portfolio.image} />
               <PortfolioContent>
                 <PortfolioTitle>{portfolio.title}</PortfolioTitle>
                 <PortfolioMetrics>

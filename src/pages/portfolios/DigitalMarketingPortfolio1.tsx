@@ -134,10 +134,12 @@ const CampaignCard = styled(motion.div)`
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 `;
 
-const CampaignImage = styled.img`
-  width: 100%;
+const CampaignImage = styled.div<{ $image: string }>`
   height: 200px;
-  object-fit: cover;
+  background: url(${props => props.$image}) center/cover;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
 `;
 
 const CampaignContent = styled.div`
@@ -189,36 +191,36 @@ const metrics = [
 
 const campaigns = [
   {
-    title: "E-commerce Growth Strategy",
-    image: "https://source.unsplash.com/random/800x600?ecommerce,digital",
-    description: "Implemented data-driven marketing strategy resulting in 200% increase in online sales.",
+    title: "Sustainable Fashion Campaign",
+    description: "Led a viral social media campaign for an eco-friendly fashion brand, resulting in 200% increase in engagement.",
+    image: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=800&auto=format&fit=crop",
     metrics: {
-      roi: "312%",
-      conversions: "10.5%",
-      reach: "2.5M",
-      engagement: "25%"
+      reach: "2.5M+",
+      engagement: "28%",
+      conversion: "12%",
+      roi: "320%"
     }
   },
   {
-    title: "B2B Lead Generation",
-    image: "https://source.unsplash.com/random/800x600?business,meeting",
-    description: "Generated 500+ qualified leads through targeted LinkedIn advertising campaign.",
+    title: "Tech Startup Launch",
+    description: "Orchestrated a multi-channel marketing campaign for a SaaS startup's product launch.",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&auto=format&fit=crop",
     metrics: {
-      roi: "425%",
-      conversions: "15.2%",
-      reach: "500K",
-      engagement: "18%"
+      reach: "1.8M+",
+      engagement: "32%",
+      conversion: "15%",
+      roi: "450%"
     }
   },
   {
-    title: "Brand Awareness Campaign",
-    image: "https://source.unsplash.com/random/800x600?marketing,brand",
-    description: "Increased brand visibility by 150% through multi-channel marketing approach.",
+    title: "Food Delivery App",
+    description: "Created and executed a localized digital marketing strategy for a food delivery service.",
+    image: "https://images.unsplash.com/photo-1526367790999-0150786686a2?w=800&auto=format&fit=crop",
     metrics: {
-      roi: "280%",
-      conversions: "8.7%",
-      reach: "5M",
-      engagement: "22%"
+      reach: "850K+",
+      engagement: "25%",
+      conversion: "18%",
+      roi: "280%"
     }
   }
 ];
@@ -291,28 +293,28 @@ const DigitalMarketingPortfolio1: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
             >
-              <CampaignImage src={campaign.image} alt={campaign.title} />
+              <CampaignImage $image={campaign.image} />
               <CampaignContent>
                 <CampaignTitle>{campaign.title}</CampaignTitle>
-                <CampaignMetrics>
-                  <MetricItem>
-                    <span>{campaign.metrics.roi}</span>
-                    <span>ROI</span>
-                  </MetricItem>
-                  <MetricItem>
-                    <span>{campaign.metrics.conversions}</span>
-                    <span>Conv. Rate</span>
-                  </MetricItem>
-                  <MetricItem>
-                    <span>{campaign.metrics.reach}</span>
-                    <span>Reach</span>
-                  </MetricItem>
-                  <MetricItem>
-                    <span>{campaign.metrics.engagement}</span>
-                    <span>Engagement</span>
-                  </MetricItem>
-                </CampaignMetrics>
                 <CampaignDescription>{campaign.description}</CampaignDescription>
+                <MetricsGrid>
+                  <MetricItem>
+                    <MetricValue>{campaign.metrics.reach}</MetricValue>
+                    <MetricLabel>Reach</MetricLabel>
+                  </MetricItem>
+                  <MetricItem>
+                    <MetricValue>{campaign.metrics.engagement}</MetricValue>
+                    <MetricLabel>Engagement</MetricLabel>
+                  </MetricItem>
+                  <MetricItem>
+                    <MetricValue>{campaign.metrics.conversion}</MetricValue>
+                    <MetricLabel>Conversion</MetricLabel>
+                  </MetricItem>
+                  <MetricItem>
+                    <MetricValue>{campaign.metrics.roi}</MetricValue>
+                    <MetricLabel>ROI</MetricLabel>
+                  </MetricItem>
+                </MetricsGrid>
               </CampaignContent>
             </CampaignCard>
           ))}

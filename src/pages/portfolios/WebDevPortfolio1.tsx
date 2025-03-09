@@ -126,20 +126,36 @@ const ProjectGrid = styled.div`
 `;
 
 const ProjectCard = styled(motion.div)`
-  background: #112240;
-  padding: 2rem;
-  border-radius: 4px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 
-  h4 {
-    color: #ccd6f6;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+  &:hover {
+    transform: translateY(-5px);
   }
+`;
 
-  p {
-    color: #8892b0;
-    margin-bottom: 1.5rem;
-  }
+const ProjectImage = styled.img`
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+`;
+
+const ProjectContent = styled.div`
+  padding: 1.5rem;
+`;
+
+const ProjectTitle = styled.h4`
+  color: #ccd6f6;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+`;
+
+const ProjectDescription = styled.p`
+  color: #8892b0;
+  margin-bottom: 1.5rem;
 `;
 
 const TechStack = styled.div`
@@ -150,21 +166,30 @@ const TechStack = styled.div`
   color: #61DAFB;
 `;
 
+const TechTag = styled.span`
+  background: #233554;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+`;
+
 const projects = [
   {
     title: "E-commerce Platform",
-    description: "A full-stack e-commerce solution with React, Node.js, and MongoDB. Features include user authentication, payment processing, and real-time inventory management.",
-    tech: ["React", "Node.js", "MongoDB", "Stripe"]
+    description: "Built a scalable e-commerce platform using microservices architecture, handling 100K+ daily users.",
+    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format&fit=crop",
+    tech: ["React", "Node.js", "MongoDB", "Docker", "AWS"]
   },
   {
-    title: "AI Chat Application",
-    description: "Real-time chat application powered by OpenAI's GPT-3. Includes features like conversation history, code highlighting, and file sharing.",
-    tech: ["Next.js", "OpenAI API", "WebSocket", "TypeScript"]
+    title: "Social Media Dashboard",
+    description: "Developed a real-time analytics dashboard for social media management and content scheduling.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop",
+    tech: ["Vue.js", "GraphQL", "PostgreSQL", "Redis", "D3.js"]
   },
   {
-    title: "Portfolio Generator",
-    description: "A web application that helps developers create professional portfolios with customizable templates and real-time preview.",
-    tech: ["React", "Styled Components", "Firebase", "Framer Motion"]
+    title: "AI-Powered Chat App",
+    description: "Created an intelligent chat application with natural language processing and real-time translation.",
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop",
+    tech: ["TypeScript", "OpenAI API", "WebSocket", "Express", "MongoDB"]
   }
 ];
 
@@ -228,15 +253,18 @@ const WebDevPortfolio1: React.FC = () => {
               key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2 }}
+              transition={{ delay: index * 0.1 }}
             >
-              <h4>{project.title}</h4>
-              <p>{project.description}</p>
-              <TechStack>
-                {project.tech.map((tech, i) => (
-                  <span key={i}>{tech}</span>
-                ))}
-              </TechStack>
+              <ProjectImage src={project.image} alt={project.title} />
+              <ProjectContent>
+                <ProjectTitle>{project.title}</ProjectTitle>
+                <ProjectDescription>{project.description}</ProjectDescription>
+                <TechStack>
+                  {project.tech.map((tech, i) => (
+                    <TechTag key={i}>{tech}</TechTag>
+                  ))}
+                </TechStack>
+              </ProjectContent>
             </ProjectCard>
           ))}
         </ProjectGrid>
