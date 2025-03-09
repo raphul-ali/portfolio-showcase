@@ -208,7 +208,7 @@ const WebDevPortfolio2: React.FC = () => {
                 transition={{ delay: 0.1 }}
               >
                 <ProjectTitle style={{ color: project.color }}>{project.title}</ProjectTitle>
-                <AnimatePresence>
+                <AnimatePresence mode="wait">
                   {expandedIndex === index && (
                     <ProjectDescription
                       initial={{ opacity: 0, y: 20 }}

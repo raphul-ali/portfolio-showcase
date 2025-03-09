@@ -326,7 +326,7 @@ const SoftwareDevPortfolio2: React.FC = () => {
                     </TechBadge>
                   ))}
                 </TechStackContainer>
-                <AnimatePresence>
+                <AnimatePresence mode="wait">
                   {activeProject === index && (
                     <DemoSection
                       initial={{ opacity: 0, height: 0 }}

@@ -323,7 +323,7 @@ const DigitalMarketingPortfolio2: React.FC = () => {
                 <CampaignImage src={campaign.image} alt={campaign.title} />
                 <CampaignContent>
                   <CampaignTitle>{campaign.title}</CampaignTitle>
-                  <AnimatePresence>
+                  <AnimatePresence mode="wait">
                     {(activeProject === index || activeProject === null) && (
                       <CampaignDescription
                         initial={{ opacity: 0, height: 0 }}
@@ -334,7 +334,7 @@ const DigitalMarketingPortfolio2: React.FC = () => {
                       </CampaignDescription>
                     )}
                   </AnimatePresence>
-                  <AnimatePresence>
+                  <AnimatePresence mode="wait">
                     {activeProject === index && (
                       <CampaignStats
                         initial={{ opacity: 0, y: 20 }}
