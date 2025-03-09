@@ -31,12 +31,27 @@ const Subtitle = styled.p`
   line-height: 1.6;
 `;
 
-const Grid = styled.div`
+const ProfessionSection = styled.section`
+  margin-bottom: 4rem;
+`;
+
+const ProfessionTitle = styled.h2`
+  font-size: 2rem;
+  color: #4ECDC4;
+  margin-bottom: 2rem;
+  text-align: center;
+`;
+
+const VariantsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Card = styled(motion.div)`
@@ -62,7 +77,6 @@ const StyledLink = styled(Link)`
 const CardTitle = styled.h3`
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: #4ECDC4;
 `;
 
 const CardDescription = styled.p`
@@ -70,66 +84,109 @@ const CardDescription = styled.p`
   margin-bottom: 1rem;
 `;
 
+const CardImage = styled.img`
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+`;
+
 const portfolios = [
   {
-    title: 'Photographer',
-    description: 'Minimalist design with focus on visual storytelling',
-    path: '/photographer',
-    color: '#FF6B6B'
+    profession: "Web Developer",
+    variants: [
+      {
+        title: "Modern Minimalist",
+        description: "Clean and minimal design focusing on code and projects",
+        path: "/web-dev-1",
+        image: "https://source.unsplash.com/random/800x600?webdevelopment,code",
+        color: "#61DAFB"
+      },
+      {
+        title: "Creative Developer",
+        description: "Bold and interactive design showcasing web innovations",
+        path: "/web-dev-2",
+        image: "https://source.unsplash.com/random/800x600?programming,laptop",
+        color: "#FF6B6B"
+      }
+    ]
   },
   {
-    title: 'Developer',
-    description: 'Modern tech-focused portfolio with interactive elements',
-    path: '/developer',
-    color: '#4ECDC4'
+    profession: "Software Developer",
+    variants: [
+      {
+        title: "Tech Professional",
+        description: "Enterprise-focused design highlighting software architecture",
+        path: "/software-dev-1",
+        image: "https://source.unsplash.com/random/800x600?software,technology",
+        color: "#4ECDC4"
+      },
+      {
+        title: "Innovation Leader",
+        description: "Dynamic portfolio showcasing cutting-edge projects",
+        path: "/software-dev-2",
+        image: "https://source.unsplash.com/random/800x600?coding,computer",
+        color: "#A8E6CF"
+      }
+    ]
   },
   {
-    title: 'Designer',
-    description: 'Creative and bold portfolio showcasing visual work',
-    path: '/designer',
-    color: '#95E1D3'
+    profession: "Digital Marketer",
+    variants: [
+      {
+        title: "Data-Driven Marketer",
+        description: "Analytics-focused design with campaign showcases",
+        path: "/digital-marketing-1",
+        image: "https://source.unsplash.com/random/800x600?marketing,analytics",
+        color: "#FFD93D"
+      },
+      {
+        title: "Creative Strategist",
+        description: "Visual-centric portfolio highlighting brand stories",
+        path: "/digital-marketing-2",
+        image: "https://source.unsplash.com/random/800x600?socialmedia,marketing",
+        color: "#FF8B94"
+      }
+    ]
   },
   {
-    title: 'Artist',
-    description: 'Artistic portfolio with gallery-style presentation',
-    path: '/artist',
-    color: '#FCE38A'
+    profession: "Banker",
+    variants: [
+      {
+        title: "Professional Finance",
+        description: "Corporate and trustworthy design for financial expertise",
+        path: "/banker-1",
+        image: "https://source.unsplash.com/random/800x600?finance,banking",
+        color: "#2C3E50"
+      },
+      {
+        title: "Modern Banker",
+        description: "Contemporary design focusing on fintech and innovation",
+        path: "/banker-2",
+        image: "https://source.unsplash.com/random/800x600?business,finance",
+        color: "#3498DB"
+      }
+    ]
   },
   {
-    title: 'Writer',
-    description: 'Clean and elegant portfolio for written content',
-    path: '/writer',
-    color: '#EAFFD0'
-  },
-  {
-    title: 'Architect',
-    description: 'Structured portfolio highlighting architectural projects',
-    path: '/architect',
-    color: '#95A5A6'
-  },
-  {
-    title: 'Musician',
-    description: 'Dynamic portfolio with audio integration',
-    path: '/musician',
-    color: '#E056FD'
-  },
-  {
-    title: 'Consultant',
-    description: 'Professional portfolio emphasizing expertise',
-    path: '/consultant',
-    color: '#7ED6DF'
-  },
-  {
-    title: 'Chef',
-    description: 'Culinary portfolio with rich visual elements',
-    path: '/chef',
-    color: '#FF7675'
-  },
-  {
-    title: 'Filmmaker',
-    description: 'Cinematic portfolio showcasing video work',
-    path: '/filmmaker',
-    color: '#FD79A8'
+    profession: "Teacher",
+    variants: [
+      {
+        title: "Education Leader",
+        description: "Professional portfolio for academic excellence",
+        path: "/teacher-1",
+        image: "https://source.unsplash.com/random/800x600?education,teaching",
+        color: "#9B59B6"
+      },
+      {
+        title: "Modern Educator",
+        description: "Interactive design showcasing teaching innovation",
+        path: "/teacher-2",
+        image: "https://source.unsplash.com/random/800x600?classroom,learning",
+        color: "#E74C3C"
+      }
+    ]
   }
 ];
 
@@ -139,27 +196,32 @@ const LandingPage = () => {
       <Header>
         <Title>Portfolio Excellence</Title>
         <Subtitle>
-          In today's digital age, a stunning portfolio website is your gateway to success. 
-          It's not just a collection of work—it's your digital identity, your brand story, 
-          and your professional footprint in the online world. Explore our diverse collection 
-          of portfolio designs tailored for different professions.
+          Explore our collection of 10 unique portfolio designs across 5 professions.
+          Each profession features two distinct styles, allowing you to choose the perfect
+          presentation for your professional journey.
         </Subtitle>
       </Header>
 
-      <Grid>
-        {portfolios.map((portfolio, index) => (
-          <StyledLink to={portfolio.path} key={index}>
-            <Card
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <CardTitle style={{ color: portfolio.color }}>{portfolio.title}</CardTitle>
-              <CardDescription>{portfolio.description}</CardDescription>
-            </Card>
-          </StyledLink>
-        ))}
-      </Grid>
+      {portfolios.map((profession, profIndex) => (
+        <ProfessionSection key={profIndex}>
+          <ProfessionTitle>{profession.profession}</ProfessionTitle>
+          <VariantsGrid>
+            {profession.variants.map((variant, varIndex) => (
+              <StyledLink to={variant.path} key={varIndex}>
+                <Card
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: (profIndex * 2 + varIndex) * 0.1 }}
+                >
+                  <CardImage src={variant.image} alt={variant.title} />
+                  <CardTitle style={{ color: variant.color }}>{variant.title}</CardTitle>
+                  <CardDescription>{variant.description}</CardDescription>
+                </Card>
+              </StyledLink>
+            ))}
+          </VariantsGrid>
+        </ProfessionSection>
+      ))}
     </Container>
   );
 };
