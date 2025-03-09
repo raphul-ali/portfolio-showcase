@@ -249,100 +249,100 @@ const ReadMore = styled(motion.span)`
 const portfolios = [
   {
     profession: "Web Developer",
-    icon: "💻",
+    icon: "👨‍💻",
     variants: [
       {
         title: "Modern Minimalist",
         description: "Clean and minimal design focusing on code and projects. Perfect for showcasing your development skills and project portfolio.",
         path: "/web-dev-1",
-        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format&fit=crop",
+        image: "https://images.pexels.com/photos/270404/pexels-photo-270404.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         color: "#61DAFB"
       },
       {
         title: "Creative Developer",
         description: "Bold and interactive design showcasing web innovations. Ideal for creative developers who push the boundaries of web technology.",
         path: "/web-dev-2",
-        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&auto=format&fit=crop",
+        image: "https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         color: "#FF6B6B"
       }
     ]
   },
   {
     profession: "Software Developer",
-    icon: "⚡",
+    icon: "🚀",
     variants: [
       {
         title: "Tech Professional",
         description: "Enterprise-focused design highlighting software architecture and complex system designs. Perfect for senior developers.",
         path: "/software-dev-1",
-        image: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=800&auto=format&fit=crop",
+        image: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         color: "#4ECDC4"
       },
       {
         title: "Innovation Leader",
         description: "Dynamic portfolio showcasing cutting-edge projects and technological innovation. Ideal for tech leads and architects.",
         path: "/software-dev-2",
-        image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop",
+        image: "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         color: "#A8E6CF"
       }
     ]
   },
   {
     profession: "Digital Marketer",
-    icon: "📊",
+    icon: "📈",
     variants: [
       {
         title: "Data-Driven Marketer",
         description: "Analytics-focused design with campaign showcases and performance metrics. Perfect for performance marketers.",
         path: "/digital-marketing-1",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop",
+        image: "https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         color: "#FFD93D"
       },
       {
         title: "Creative Strategist",
         description: "Visual-centric portfolio highlighting brand stories and creative campaigns. Ideal for creative directors and strategists.",
         path: "/digital-marketing-2",
-        image: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=800&auto=format&fit=crop",
+        image: "https://images.pexels.com/photos/905163/pexels-photo-905163.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         color: "#FF8B94"
       }
     ]
   },
   {
     profession: "Banker",
-    icon: "💰",
+    icon: "💼",
     variants: [
       {
         title: "Professional Finance",
         description: "Corporate and trustworthy design showcasing financial expertise and portfolio management skills. Perfect for investment bankers.",
         path: "/banker-1",
-        image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&auto=format&fit=crop",
+        image: "https://images.pexels.com/photos/259027/pexels-photo-259027.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         color: "#2C3E50"
       },
       {
         title: "Modern Banker",
         description: "Contemporary design focusing on fintech innovation and modern banking solutions. Ideal for fintech professionals.",
         path: "/banker-2",
-        image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&auto=format&fit=crop",
+        image: "https://images.pexels.com/photos/7654579/pexels-photo-7654579.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         color: "#3498DB"
       }
     ]
   },
   {
     profession: "Teacher",
-    icon: "📚",
+    icon: "👩‍🏫",
     variants: [
       {
         title: "Education Leader",
         description: "Professional portfolio highlighting academic excellence and teaching methodology. Perfect for educational leaders.",
         path: "/teacher-1",
-        image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop",
+        image: "https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         color: "#9B59B6"
       },
       {
         title: "Modern Educator",
         description: "Interactive design showcasing innovative teaching approaches and digital learning solutions. Ideal for EdTech specialists.",
         path: "/teacher-2",
-        image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&auto=format&fit=crop",
+        image: "https://images.pexels.com/photos/5905709/pexels-photo-5905709.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         color: "#E74C3C"
       }
     ]
